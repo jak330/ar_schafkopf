@@ -16,7 +16,8 @@
     <script>
         
     // Initialize new Peer object 
-    var peer = new Peer();
+    peer_id = "qwertzuiop-asdfghjkl-yxcvbnm"
+    var peer = new Peer(peer_id);
 
     // Declare a variable to store local stream 
     let localStream;
@@ -36,7 +37,7 @@
 
     // When peer is open, set the local peer ID input value
     peer.on("open", id => {
-        inputLocalPeerId.value = id;
+        inputLocalPeerId.value = peer_id;
     });
 
     // When call button is clicked, call the remote peer with the entered ID
