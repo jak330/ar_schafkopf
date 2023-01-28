@@ -20,7 +20,7 @@
     peer_id_client_in = "client_in_for_display_yolo"
     peer_id = "qwertzuiop-asdfghjkl-yxcvbnm"
     var peer = new Peer(peer_id);
-    var peer = new Peer(peer_id_client_in)
+    var peer_client_in = new Peer(peer_id_client_in)
 
     // Declare a variable to store local stream 
     let localStream;
@@ -78,6 +78,19 @@
             remoteVideo.onloadedmetadata = () => remoteVideo.play();
         });
     });
+
+        // Handle incoming calls and answer with local stream
+        peer_client_in.on("call", call => {
+        call.answer(localStream);
+        call.on("stream", stream => {
+            const remoteVideo = document.getElementById("remoteVideo");
+            remoteVideo.srcObject = stream;
+            remoteVideo.onloadedmetadata = () => remoteVideo.play();
+        });
+    });
+
+
+
     </script>
 </body>
 </html>
