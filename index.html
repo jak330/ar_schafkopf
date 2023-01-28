@@ -43,6 +43,11 @@
         inputLocalPeerId.value = peer_id;
     });
 
+        // When peer is open, set the local peer ID input value
+        peer_client_in.on("open", id => {
+        inputLocalPeerId.value = peer_id;
+    });
+
     // When call button is clicked, call the remote peer with the entered ID
     // and handle the received stream
     // for end-communication with changes video stream
