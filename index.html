@@ -16,8 +16,11 @@
     <script>
         
     // Initialize new Peer object 
+    peer_remote_id_server_in = "server_in_for_display_yolo"
+    peer_id_client_in = "client_in_for_display_yolo"
     peer_id = "qwertzuiop-asdfghjkl-yxcvbnm"
     var peer = new Peer(peer_id);
+    var peer = new Peer(peer_id_client_in)
 
     // Declare a variable to store local stream 
     let localStream;
@@ -42,8 +45,22 @@
 
     // When call button is clicked, call the remote peer with the entered ID
     // and handle the received stream
+    // for end-communication with changes video stream
     btnCall.addEventListener("click", function() {
         const remotePeerId = inputRemotePeerId.value;
+        const call = peer.call(remotePeerId, localStream);
+        call.on("stream", stream => {
+            const remoteVideo = document.getElementById("remoteVideo");
+            remoteVideo.srcObject = stream;
+            remoteVideo.onloadedmetadata = () => remoteVideo.play();
+        });
+    });
+
+        // When call button is clicked, call the remote peer with the entered ID
+    // and handle the received stream
+    // for starting-communication
+    btnCall.addEventListener("click", function() {
+        const remotePeerId = peer_remote_id_server_in
         const call = peer.call(remotePeerId, localStream);
         call.on("stream", stream => {
             const remoteVideo = document.getElementById("remoteVideo");
