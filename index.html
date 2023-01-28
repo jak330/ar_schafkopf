@@ -16,11 +16,8 @@
     <script>
         
     // Initialize new Peer object 
-    peer_remote_id_server_in = "server_in_for_display_yolo"
-    peer_id_client_in = "qay-wsx-edc-rfv-tgb-zhn"
     peer_id = "qwertzuiop-asdfghjkl-yxcvbnm"
     var peer = new Peer(peer_id);
-    var peer_client_in = new Peer(peer_id_client_in)
 
     // Declare a variable to store local stream 
     let localStream;
@@ -43,29 +40,10 @@
         inputLocalPeerId.value = peer_id;
     });
 
-        // When peer is open, set the local peer ID input value
-        peer_client_in.on("open", id => {
-        inputLocalPeerId.value = peer_id_client_in;
-    });
-
     // When call button is clicked, call the remote peer with the entered ID
     // and handle the received stream
-    // for end-communication with changes video stream
     btnCall.addEventListener("click", function() {
         const remotePeerId = inputRemotePeerId.value;
-        const call = peer.call(remotePeerId, localStream);
-        call.on("stream", stream => {
-            const remoteVideo = document.getElementById("remoteVideo");
-            remoteVideo.srcObject = stream;
-            remoteVideo.onloadedmetadata = () => remoteVideo.play();
-        });
-    });
-
-        // When call button is clicked, call the remote peer with the entered ID
-    // and handle the received stream
-    // for starting-communication
-    btnCall.addEventListener("click", function() {
-        const remotePeerId = peer_remote_id_server_in
         const call = peer.call(remotePeerId, localStream);
         call.on("stream", stream => {
             const remoteVideo = document.getElementById("remoteVideo");
@@ -83,19 +61,6 @@
             remoteVideo.onloadedmetadata = () => remoteVideo.play();
         });
     });
-
-        // Handle incoming calls and answer with local stream
-        peer_client_in.on("call", call => {
-        call.answer(localStream);
-        call.on("stream", stream => {
-            const remoteVideo = document.getElementById("remoteVideo");
-            remoteVideo.srcObject = stream;
-            remoteVideo.onloadedmetadata = () => remoteVideo.play();
-        });
-    });
-
-
-
     </script>
 </body>
 </html>
