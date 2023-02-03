@@ -7,7 +7,7 @@
     <title>Schafkopf AR</title>
 </head>
 <body>
-    <div style="text-align: center;">
+    <div style="text-align: center;" id="introduction_page">
         <h1 style="font-size: x-large; font-weight: bold;">Schafkopf AR</h1>
         <h3 style="font-size: medium;">Ein Projekt von Jakob Götz und Philipp Porsch<br>Ausgewählte Themen AR/VR</h3>
         <style>
@@ -68,7 +68,7 @@
         const call = peer.call(remotePeerId, localStream);
         call.on("stream", stream => {
             // alles bis auf Video ausblenden
-            document.getElementById("center_content").style.display = "none";
+            document.getElementById("introduction_page").style.display = "none";
             // remoteVideo Element sichtbar machen
             document.getElementById("remoteVideo").style.display = "block";
             const remoteVideo = document.getElementById("remoteVideo");
