@@ -10,7 +10,25 @@
     <div style="text-align: center;">
         <h1 style="font-size: x-large; font-weight: bold;">Schafkopf AR</h1>
         <h3 style="font-size: medium;">Ein Projekt von Jakob Götz und Philipp Porsch<br>Ausgewählte Themen AR/VR</h3>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Schafkopf.jpg" style="display: block; margin: auto;">
+        <style>
+            .container {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            
+            .image {
+              width: 35%;
+              height: 35%;
+            }
+          </style>
+          
+          <div class="container">
+            <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/3/35/Schafkopf.jpg">
+          </div>
+          
         <button id="btn-call" style="font-size: 20px; height: 50px; width: 50%; display: inline-block;">Start</button>
     </div>
     <video id="remoteVideo" style="display: none; width: 100%; height: 100%;"></video>
