@@ -31,7 +31,25 @@
           
         <button id="btn-call" style="font-size: 20px; height: 50px; width: 50%; display: inline-block;">Start</button>
     </div>
+    <style>
+        #remoteVideo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 50px);
+        }
+    
+        #btn-end {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            font-size: 20px;
+            height: 50px;
+        }
+    </style>
     <video id="remoteVideo" style="display: none; width: 100%; height: 100%;"></video>
+    <button id="btn-end" style="display: none; font-size: 20px; height: 50px; width: 100%;">Beenden</button>
     <script src="https://unpkg.com/peerjs@1.3.2/dist/peerjs.min.js"></script>
     <script>
         
@@ -44,7 +62,8 @@
     let localStream;
 
     // Get DOM elements for local and remote peer ID inputs and call button
-    const btnCall = document.getElementById("btn-call");
+    const btnCall_start = document.getElementById("btn-call");
+    const btnCall_ende = document.getElementById("btn-end");
 
     // Get user media (audio and video) and display it on the page
     navigator.mediaDevices.getUserMedia({ video: true , audio: true}).then(stream => {
@@ -63,18 +82,24 @@
 
     // When call button is clicked, call the remote peer with the entered ID
     // and handle the received stream
-    btnCall.addEventListener("click", function() {
+    btnCall_start.addEventListener("click", function() {
         const remotePeerId = remote_peer_id_server;
+        // alles bis auf Video ausblenden
+        document.getElementById("introduction_page").style.display = "none";
+        // remoteVideo Element und btn-end sichtbar machen
+        document.getElementById("remoteVideo").style.display = "block";
+        btnCall_ende.style.display = "inline-block"
         const call = peer.call(remotePeerId, localStream);
         call.on("stream", stream => {
-            // alles bis auf Video ausblenden
-            document.getElementById("introduction_page").style.display = "none";
-            // remoteVideo Element sichtbar machen
-            document.getElementById("remoteVideo").style.display = "block";
             const remoteVideo = document.getElementById("remoteVideo");
             remoteVideo.srcObject = stream;
             remoteVideo.onloadedmetadata = () => remoteVideo.play();
         });
+    });
+
+    // zum Beenden der Anwendung
+    btnCall_ende.addEventListener("click", function(){
+        window.close();
     });
 
     // Das brauch ich eigentlich nicht, weil ich vom Server nicht den Client aufrufe
