@@ -33,15 +33,11 @@
     </div>
     <style>
         #remoteVideo {
-            position: fixed;
-        text-align: center;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
             text-align: center;
         }
     
@@ -101,6 +97,9 @@
             const remoteVideo = document.getElementById("remoteVideo");
             remoteVideo.srcObject = stream;
             remoteVideo.onloadedmetadata = () => remoteVideo.play();
+            if(elem.requestFullscreen){
+                elem.requestFullscreen();
+            }
         });
     });
 
