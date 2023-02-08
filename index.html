@@ -69,7 +69,7 @@
     const btnCall_ende = document.getElementById("btn-end");
 
     // Get user media (audio and video) and display it on the page
-    navigator.mediaDevices.getUserMedia({ video: true , audio: true}).then(stream => {
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: {exact: "environment"}, width: 1920, height: 1080 } , audio: true}).then(stream => {
         localStream = stream;
          /*
         const videoElement = document.getElementById("localVideo");
