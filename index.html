@@ -36,8 +36,9 @@
             position: absolute;
             top: 0;
             left: 0;
-            height: 100%;
-            width: 100%;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
             text-align: center;
         }
     
@@ -83,6 +84,8 @@
         inputLocalPeerId.value = peer_id;
     });
 
+    const elem = document.getElementById("remoteVideo");
+    
     // When call button is clicked, call the remote peer with the entered ID
     // and handle the received stream
     btnCall_start.addEventListener("click", function() {
@@ -96,9 +99,10 @@
         call.on("stream", stream => {
             const remoteVideo = document.getElementById("remoteVideo");
             remoteVideo.srcObject = stream;
-            remoteVideo.onloadedmetadata = () => remoteVideo.play();
-            if(elem.requestFullscreen){
-                elem.requestFullscreen();
+            remoteVideo.onloadedmetadata = () => { remoteVideo.play();
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    }
             }
         });
     });
@@ -108,16 +112,6 @@
         window.close();
     });
 
-    // Das brauch ich eigentlich nicht, weil ich vom Server nicht den Client aufrufe
-    // Handle incoming calls and answer with local stream
-    peer.on("call", call => {
-        call.answer(localStream);
-        call.on("stream", stream => {
-            const remoteVideo = document.getElementById("remoteVideo");
-            remoteVideo.srcObject = stream;
-            remoteVideo.onloadedmetadata = () => remoteVideo.play();
-        });
-    });
     </script>
 </body>
 </html>
