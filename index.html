@@ -36,9 +36,8 @@
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 50px;
-            height: calc(100% - 50px);
+            height: 100%;
+            width: 100%;
             text-align: center;
         }
     
@@ -52,7 +51,7 @@
             left: 0;
         }
     </style>
-    <video id="remoteVideo" style="display: none;"></video>
+    <video id="remoteVideo" style="display: none; width: 100%; height: 100%;"></video>
     <button id="btn-end" style="display: none; font-size: 20px; height: 50px; width: 100%;">Beenden</button>
     <script src="https://unpkg.com/peerjs@1.3.2/dist/peerjs.min.js"></script>
     <script>
@@ -70,7 +69,7 @@
     const btnCall_ende = document.getElementById("btn-end");
 
     // Get user media (audio and video) and display it on the page
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" }, width: 1920, height: 1080 } , audio: true}).then(stream => {
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: {exact: "environment"}, width: 1920, height: 1080 } , audio: true}).then(stream => {
         localStream = stream;
          /*
         const videoElement = document.getElementById("localVideo");
@@ -98,15 +97,12 @@
             const remoteVideo = document.getElementById("remoteVideo");
             remoteVideo.srcObject = stream;
             remoteVideo.onloadedmetadata = () => remoteVideo.play();
-
-
         });
     });
 
-
     // zum Beenden der Anwendung
     btnCall_ende.addEventListener("click", function(){
-        window.location.href = "Jak330.github.io"
+        window.close();
     });
 
     // Das brauch ich eigentlich nicht, weil ich vom Server nicht den Client aufrufe
