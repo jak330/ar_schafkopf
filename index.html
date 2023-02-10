@@ -69,7 +69,7 @@
     const btnCall_ende = document.getElementById("btn-end");
 
     // Get user media (audio and video) and display it on the page
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: {exact: "environment"}, width: 1920, height: 1080 } , audio: true}).then(stream => {
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" }, width: 1920, height: 1080 } , audio: true}).then(stream => {
         localStream = stream;
          /*
         const videoElement = document.getElementById("localVideo");
@@ -97,15 +97,14 @@
             const remoteVideo = document.getElementById("remoteVideo");
             remoteVideo.srcObject = stream;
             remoteVideo.onloadedmetadata = () => remoteVideo.play();
-            if(elem.requestFullscreen){
-                elem.requestFullscreen();
-            }
+
         });
     });
 
+
     // zum Beenden der Anwendung
     btnCall_ende.addEventListener("click", function(){
-        window.close();
+        window.location.href = "Jak330.github.io"
     });
 
     // Das brauch ich eigentlich nicht, weil ich vom Server nicht den Client aufrufe
