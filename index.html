@@ -1,117 +1,200 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schafkopf AR</title>
-</head>
-<body>
-    <div style="text-align: center;" id="introduction_page">
-        <h1 style="font-size: x-large; font-weight: bold;">Schafkopf AR</h1>
-        <h3 style="font-size: medium;">Ein Projekt von Jakob Götz und Philipp Porsch<br>Ausgewählte Themen AR/VR</h3>
-        <style>
-            .container {
-              width: 100%;
-              height: 100%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
-            
-            .image {
-              width: 50%;
-              height: 50%;
-            }
-          </style>
-          
-          <div class="container">
-            <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/3/35/Schafkopf.jpg">
-          </div>
-          
-        <button id="btn-call" style="font-size: 20px; height: 50px; width: 50%; display: inline-block;">Start</button>
-    </div>
-    <style>
-        #remoteVideo {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: fill;
-            text-align: center;
-        }
-    
-        #btn-end {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            font-size: 20px;
-            height: 50px;
-            text-align: center;
-            left: 0;
-        }
-    </style>
-    <video id="remoteVideo" style="display: none; width: 100%; height: 100%;"></video>
-    <button id="btn-end" style="display: none; font-size: 20px; height: 50px; width: 100%;">Beenden</button>
-    <script src="https://unpkg.com/peerjs@1.3.2/dist/peerjs.min.js"></script>
-    <script>
-        
-    // Initialize new Peer object 
-    peer_id = "qwertzuiop-asdfghjkl-yxcvbnm"
-    var peer = new Peer(peer_id);
-    remote_peer_id_server = "mnbvcxy-lkjhgfdsa-poiuztrewq"
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Hyperspace by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
 
-    // Declare a variable to store local stream 
-    let localStream;
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">BJJ Amberg</a></li>
+							<li><a href="#one">Über uns</a></li>
+							<li><a href="#two">Trainingszeiten</a></li>
+							<li><a href="#three">Kontaktiere uns!</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
 
-    // Get DOM elements for local and remote peer ID inputs and call button
-    const btnCall_start = document.getElementById("btn-call");
-    const btnCall_ende = document.getElementById("btn-end");
+		<!-- Wrapper -->
+			<div id="wrapper">
 
-    // Get user media (audio and video) and display it on the page
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: {exact: "environment"}, width: 1920, height: 1080 } , audio: true}).then(stream => {
-        localStream = stream;
-         /*
-        const videoElement = document.getElementById("localVideo");
-        videoElement.srcObject = localStream;
-        videoElement.onloadedmetadata = () => videoElement.play()
-        */
-    });
+				<!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h1>BJJ Amberg</h1>
+							<p>Bei uns kannst du die Kampfsportart Brazilian Jiu Jitsu erlernen! <br>
+							Wir gehören zu Checkmat und sind ein Team des Checkmat Franconia Verbunds </p>
+							<ul class="actions">
+								<li><a href="#one" class="button scrolly">Erfahre mehr über uns</a></li>
+							</ul>
+						</div>
+					</section>
 
-    // When peer is open, set the local peer ID input value
-    peer.on("open", id => {
-        inputLocalPeerId.value = peer_id;
-    });
+				<!-- One -->
+					<section id="one" class="wrapper style2 spotlights">
+						<section>
+							<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>Gründung</h2>
+									<p>BJJ Amberg wurde 2018 von Johannes Eckl als Sparte von Bushido Amberg gegründet. Bereits zuvor wurde unter Professor Stuart Lee in Schwabach und Nürnberg trainiert.</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>Trainer & Training</h2>
+									<p>Als Trainer stehen Johannes Eckl (Braungurt), Jakob Götz (Lilagurt) und Crystal Baysa-Hernandez (Blaugurt) zur Verfügung. Reguläres Training findet 3x die Woche statt. Zusätzlich kommt noch ein Einheit nur für Frauen und Wettkampfvorbereitung hinzu.
+									</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<a href="#" class="image"><img src="images/pic03.jpg" alt="" data-position="25% 25%" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>Vereinszugehörigkeit</h2>
+									<p>BJJ Amberg ist eine Sparte von Bushido Amberg. Zusätzlich gehören wir zum Checkmat Franconia Verbund mit Professor Stuart Lee als Headcoach an der Spitze. 
+										Zu Checkmat Franconia gehören noch Learn2Fight (Nürnberg), Solid BJJ (Coburg), SHIGAISEN (Bayreuth) und Learn2Fight (Bamberg).
+									</p>
+								</div>
+							</div>
+						</section>
+					</section>
 
-    const elem = document.getElementById("remoteVideo");
-    
-    // When call button is clicked, call the remote peer with the entered ID
-    // and handle the received stream
-    btnCall_start.addEventListener("click", function() {
-        const remotePeerId = remote_peer_id_server;
-        // alles bis auf Video ausblenden
-        document.getElementById("introduction_page").style.display = "none";
-        // remoteVideo Element und btn-end sichtbar machen
-        document.getElementById("remoteVideo").style.display = "block";
-        btnCall_ende.style.display = "inline-block"
-        const call = peer.call(remotePeerId, localStream);
-        call.on("stream", stream => {
-            const remoteVideo = document.getElementById("remoteVideo");
-            remoteVideo.srcObject = stream;
-            remoteVideo.onloadedmetadata = () => { remoteVideo.play();
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    }
-            }
-        });
-    });
+				<!-- Two -->
+					<section id="two" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h2>Trainingszeiten</h2>
+							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+							<div class="features">
+								<section>
+									<span class="icon solid major fa-code"></span>
+									<h3>Lorem ipsum amet</h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-lock"></span>
+									<h3>Aliquam sed nullam</h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-cog"></span>
+									<h3>Sed erat ullam corper</h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-desktop"></span>
+									<h3>Veroeros quis lorem</h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-link"></span>
+									<h3>Urna quis bibendum</h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								</section>
+								<section>
+									<span class="icon major fa-gem"></span>
+									<h3>Aliquam urna dapibus</h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								</section>
+							</div>
+							<ul class="actions">
+								<li><a href="generic.html" class="button">Learn more</a></li>
+							</ul>
+						</div>
+					</section>
 
-    // zum Beenden der Anwendung
-    btnCall_ende.addEventListener("click", function(){
-        window.location.href = "Jak330.github.io"
-    });
+				<!-- Three -->
+					<section id="three" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>Kontaktiere uns!</h2>
+							<p>Egal, ob du bereits Kampfsport Erfahrung hast oder nicht, bei uns ist jeder willkommen. <br>
+								Nutze einfach das Kontaktformular, um ein kostenloses Probetraining zu vereinbaren. </p>
+							<div class="split style1">
+								<section>
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<label for="name">Name</label>
+												<input type="text" name="name" id="name" />
+											</div>
+											<div class="field half">
+												<label for="email">Email</label>
+												<input type="text" name="email" id="email" />
+											</div>
+											<div class="field">
+												<label for="message">Nachricht</label>
+												<textarea name="message" id="message" rows="5"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><a href="" class="button submit">Absenden</a></li>
+										</ul>
+									</form>
+								</section>
+								<section>
+									<ul class="contact">
+										<li>
+											<h3>Adresse</h3>
+											<span>Am Schanzl 11<br />
+											92224 Amberg<br /></span>
+										</li>
+										<li>
+											<h3>Email</h3>
+											<a href="#">testmail@bjj-amberg.de</a>
+										</li>
+										<li>
+											<h3>Telefon</h3>
+											<span>(000) 000-0000</span>
+										</li>
+										<li>
+											<h3>Social</h3>
+											<ul class="icons">
+												<li><a href="https://www.facebook.com/profile.php?id=100057458109042" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+												<li><a href="https://www.instagram.com/bjj_amberg" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+											</ul>
+										</li>
+									</ul>
+								</section>
+							</div>
+						</div>
+					</section>
 
-    </script>
-</body>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
