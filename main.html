@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+
+        <a href="#" onclick="setLanguage('en')">English</a> 
+        <a href="#" onclick="setLanguage('es')">Spanish</a>
+        
+        <div id="div1"></div>
+        
+        <script>
+        var language; 
+        function getLanguage() {
+            var langUrl = '/language/' +  localStorage.getItem('language') + '.json';
+            $.ajax({ 
+                url: langUrl, 
+                dataType: 'json', 
+                success: function (lang) { 
+                    language = lang;
+                    $('#div1').text(language.date);
+                },
+                error: function() {
+                    console.log("Error loading language file.");
+                }
+            });
+        }
+        
+        function setLanguage(lang) {
+            localStorage.setItem('language', lang);
+            getLanguage();
+        }
+        </script>
+        
+        <script>
+            $(document).ready(function(){
+                getLanguage();
+            });
+        </script> 
+
+    </body>
+</html>
