@@ -20,7 +20,7 @@
                 dataType: 'json', 
                 success: function (lang) { 
                     language = lang;
-                    
+                    $('#div1').text(language.date);
                 },
                 error: function() {
                     console.log("Error loading language file.");
@@ -30,14 +30,13 @@
         
         function setLanguage(lang) {
             localStorage.setItem('language', lang);
-            getLanguage(); 
+            getLanguage();
         }
         </script>
         
         <script>
             $(document).ready(function(){
-            getLanguage();
-            $('#div1').text(language.date);
+                getLanguage();
             });
         </script> 
 
